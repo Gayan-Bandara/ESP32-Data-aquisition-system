@@ -1,70 +1,142 @@
-# Getting Started with Create React App
+```markdown
+# ESP32 Sensor Dashboard with Real-Time Visualization
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the **ESP32 Sensor Dashboard**, a real-time IoT monitoring system built to collect, process, and display sensor data dynamically. This project integrates React for the front-end and an ESP32 microcontroller for back-end data acquisition and hosting.
 
-## Available Scripts
+## Features
+- **Real-Time Data Visualization**:
+  - Sensor values are dynamically updated every second.
+  - Three separate graphs displaying data from three sensors in real-time.
+  - Horizontally aligned graphs for a clean and user-friendly UI.
 
-In the project directory, you can run:
+- **Sensor Mapping**:
+  - Sensor values are mapped to their actual ranges (e.g., temperature, humidity, etc.).
 
-### `npm start`
+- **1-Minute Data View**:
+  - Only the last minute's data is displayed to keep the dashboard concise and relevant.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Responsive Design**:
+  - Optimized for desktop and mobile viewing.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Tech Stack
+### Front-End:
+- **React**: For creating a dynamic and interactive user interface.
+- **Chart.js**: For rendering responsive and customizable real-time graphs.
 
-### `npm test`
+### Back-End:
+- **ESP32 Microcontroller**: Handles data acquisition from sensors and hosts a RESTful API to serve sensor data.
+- **C++**: Used to program the ESP32.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Communication:
+- **Wi-Fi**: ESP32 connects to the local Wi-Fi network and serves data via an API.
 
-### `npm run build`
+## Screenshots
+### Dashboard Overview:
+![ESP32 Sensor Dashboard](dashboard-overview.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Real-Time Graphs:
+![Real-Time Graphs](dashboard-graphs.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## How It Works
+1. **ESP32 Setup**:
+   - Reads data from three sensors connected to its analog pins.
+   - Maps the raw sensor values to their actual ranges.
+   - Serves the sensor data via a RESTful API in JSON format.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. **React Front-End**:
+   - Fetches the sensor data from the ESP32 API.
+   - Dynamically updates the graphs to reflect real-time sensor values.
+   - Displays a user-friendly dashboard.
 
-### `npm run eject`
+## Installation
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Hardware Requirements
+- ESP32 Microcontroller
+- Sensors (e.g., temperature, humidity, light intensity, etc.)
+- Wi-Fi Network
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Software Requirements
+- Node.js (for React)
+- Arduino IDE (for ESP32)
+- Git
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Steps to Run the Project
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/your-username/esp32-sensor-dashboard.git
+   cd esp32-sensor-dashboard
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. **Set Up the ESP32**:
+   - Open the `esp32_code.ino` file in the Arduino IDE.
+   - Update the Wi-Fi credentials in the code:
+     ```cpp
+     const char* ssid = "Your Wi-Fi SSID";
+     const char* password = "Your Wi-Fi Password";
+     ```
+   - Flash the code to your ESP32 microcontroller.
 
-## Learn More
+3. **Run the React Front-End**:
+   - Navigate to the `react-frontend` folder:
+     ```bash
+     cd react-frontend
+     ```
+   - Install dependencies:
+     ```bash
+     npm install
+     ```
+   - Start the React application:
+     ```bash
+     npm start
+     ```
+   - Open your browser and go to `http://localhost:3000`.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4. **Access the Dashboard**:
+   - Ensure your ESP32 is connected to the same Wi-Fi network.
+   - The React app fetches sensor data from the ESP32 API and displays it on the dashboard.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Project Structure
+```
+.
+├── esp32_code.ino        # ESP32 C++ code
+├── react-frontend/       # React front-end project
+│   ├── src/
+│   │   ├── App.js        # Main React app logic
+│   │   ├── Graph.js      # Graph rendering logic
+│   │   ├── api.js        # API fetch logic
+│   │   └── styles.css    # Styling
+│   ├── package.json      # React project dependencies
+│   └── ...
+└── README.md             # This file
+```
 
-### Code Splitting
+## API Details
+The ESP32 serves data at the endpoint `/data`:
+- **Endpoint**: `http://<ESP32-IP>/data`
+- **Method**: `GET`
+- **Response**:
+  ```json
+  {
+    "sensor1": 1023,
+    "sensor2": 2048,
+    "sensor3": 4096
+  }
+  ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Future Enhancements
+- Add more sensors and dynamic graph generation.
+- Display sensor alerts when values exceed safe thresholds.
+- Deploy the project online for remote monitoring.
 
-### Analyzing the Bundle Size
+## Contributing
+Contributions are welcome! Please fork the repository and submit a pull request.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Happy Coding! 😊
+```
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Feel free to replace the placeholders (like `your-username` and screenshot paths) with your specific details! Let me know if you'd like further help.
