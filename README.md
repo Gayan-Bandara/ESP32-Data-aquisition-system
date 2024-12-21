@@ -1,4 +1,3 @@
-```markdown
 # ESP32 Sensor Dashboard with Real-Time Visualization
 
 Welcome to the **ESP32 Sensor Dashboard**, a real-time IoT monitoring system built to collect, process, and display sensor data dynamically. This project integrates React for the front-end and an ESP32 microcontroller for back-end data acquisition and hosting.
@@ -29,13 +28,6 @@ Welcome to the **ESP32 Sensor Dashboard**, a real-time IoT monitoring system bui
 
 ### Communication:
 - **Wi-Fi**: ESP32 connects to the local Wi-Fi network and serves data via an API.
-
-## Screenshots
-### Dashboard Overview:
-![ESP32 Sensor Dashboard](dashboard-overview.png)
-
-### Real-Time Graphs:
-![Real-Time Graphs](dashboard-graphs.png)
 
 ## How It Works
 1. **ESP32 Setup**:
@@ -139,4 +131,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 Happy Coding! 😊
 ```
 
-Feel free to replace the placeholders (like `your-username` and screenshot paths) with your specific details! Let me know if you'd like further help.
+Feel free to replace the placeholders (like `your-username` and screenshot paths) with your specific details!
